@@ -10,6 +10,13 @@ const signalR = new function() {
   let socket = null
   let evtSource = null
 
+  let idleTime = null
+
+  let resetIdleTimer = () => {
+    clearTimeout(idleTime)
+    idleTime = setTimeout(ping, 60000 * 5) // 5 minutes
+  }
+
   this.connection = (hub) => {
     if (hub) {
       hubName = hub
@@ -34,6 +41,7 @@ const signalR = new function() {
   }
 
   this.invoke = (name, ...args) => {
+    resetIdleTimer()
     let request = {
       H: hubName,
       M: name,
@@ -61,6 +69,7 @@ const signalR = new function() {
 
   const invokeClient = obj => {
     try {
+      resetIdleTimer()
       let res = JSON.parse(obj)
       if (res.M) {
         if (res.M[0]) {
@@ -190,7 +199,8 @@ const signalR = new function() {
     let reqUrl = this.url + '/start?transport=' + this.transport + '&clientProtocol=1.5' + '&connectionToken=' + token + '&connectionData=' + connectionData
     let callback = this.transport === 'longPolling' ? () => {
       poll()
-    } : null
+      resetIdleTimer()
+    } : resetIdleTimer
     xmlHttpReq({
       url: reqUrl,
       method: 'POST',
@@ -210,11 +220,12 @@ const signalR = new function() {
     })
   }
 
-  this.ping = () => {
+  const ping = () => {
     let reqUrl = this.url + '/ping?transport=' + this.transport + '&clientProtocol=1.5' + '&connectionToken=' + token + '&connectionData=' + connectionData
     xmlHttpReq({
       url: reqUrl,
-      method: 'POST'
+      method: 'POST',
+      callback: resetIdleTimer
     })
   }
 
