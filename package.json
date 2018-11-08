@@ -1,5 +1,5 @@
 {
-  "name": "signalr-jsclient",
+  "name": "signalr-js-client",
   "version": "1.0.0",
   "description": "SignalR JS client without dependencies",
   "main": "index.min.js",

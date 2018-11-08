@@ -14,7 +14,7 @@ $ npm install signalr-js-client
 ```
 or
 ```html
-<script src="https://cdn.jsdelivr.net/gh/lylerman/dist/signalr-js-client.js"></script> // minified version also available
+<script src="https://cdn.jsdelivr.net/gh/lylerman/signalr-js-client/dist/signalr-js-client.js"></script> // minified version also available
 ```
 ### Usage
 
