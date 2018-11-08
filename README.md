@@ -41,7 +41,7 @@ hub.on('notify', msg => {
 ### Server-methods
 When applicable, separate params using commas.
 ```js
-hub.invoke('BroadcastNotification', [...params])
+hub.invoke('BroadcastNotification', msg)
 ```
 
 ## Options
