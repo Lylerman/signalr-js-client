@@ -1,0 +1,16 @@
+{
+  "name": "signalr-jsclient",
+  "version": "1.0.0",
+  "description": "SignalR JS client without dependencies",
+  "main": "index.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "signalr",
+    "signalr-client",
+    "signalr-js-client"
+  ],
+  "author": "Lyle Quesada <lylequesada@gmail.com>",
+  "license": "ISC"
+}
